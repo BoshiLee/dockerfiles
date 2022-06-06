@@ -6,7 +6,7 @@ docker exec -it opencv_ncnn bash
 
 mkdir build && cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D OPENCV_GENERATE_PKGCONFIG=ON -D CMAKE_INSTALL_PREFIX=/usr/local ..
-make -j4
+make -j12
 sudo make install
 sudo ldconfig
 
@@ -18,7 +18,8 @@ cd ncnn
 mkdir -p build
 cd build
 cmake ..
-make -j4
+make -j12
+make install
 
 reference url:
 https://blog.csdn.net/a1040193597/article/details/102980871
