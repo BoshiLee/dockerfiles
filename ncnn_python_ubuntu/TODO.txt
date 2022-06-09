@@ -1,22 +1,19 @@
 建立 container:
-docker run -it --mount source=opencv_ncnn,target=/home/app --name opencv_ncnn opencv_test
-
+docker run -it --mount source=clion_remote_env,target=/home/app --cap-add sys_ptrace -p127.0.0.1:2222:22 --name clion_remote_env clion/remote-cpp-env
 進入 docker:
-docker exec -it opencv_ncnn bash
+docker exec -it clion_remote_env bash
 
+編譯 opencv:
 mkdir build && cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D OPENCV_GENERATE_PKGCONFIG=ON -D CMAKE_INSTALL_PREFIX=/usr/local ..
 make -j12
 sudo make install
 sudo ldconfig
 
-測試:
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D OPENCV_GENERATE_PKGCONFIG=ON -D CMAKE_INSTALL_PREFIX=/usr/local ..
-
 creat ncnn tool:
 cd ncnn
-mkdir -p build
-cd build
+mkdir -p build && cd build
+git submodule update --init
 cmake ..
 make -j12
 make install
