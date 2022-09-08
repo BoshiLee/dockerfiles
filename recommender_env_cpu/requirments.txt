@@ -1,0 +1,7 @@
+opencv-python
+deepctr[cpu]
+tensorflow
+pandas
+sklearn
+numpy
+notebook
